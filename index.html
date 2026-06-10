@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Từ vựng bài học- Lớp Anh thầy Kết</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+ header {
+  background-color: #ffd6ba;
+  padding: 15px 20px;
+  font-weight: bold;
+  color: #7a4e3e;
+  display: flex;
+  flex-wrap: wrap;       
+  align-items: center;
+  justify-content: space-between;  /* Left luôn bên trái, center căn giữa */
+  gap: 15px;
+}
+
+/* Left: icon + home text */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;          /* không bị co lại */
+}
+
+.header-left a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  color: #7a4e3e;
+  text-decoration: none;
+}
+
+.header-left a i {
+  font-size: 28px;
+}
+
+/* Center title */
+header {
+  position: relative;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 32px;
+  margin: 0;
+  white-space: nowrap;
+}
+/* ===== TOP SELECT ===== */
+.top-bar{
+  width:85%;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.top-bar select{
+  min-width:240px;
+  flex-shrink:0;
+}
+
+.top-bar audio{
+  flex:1;
+  height:42px;
+}
+
+select {
+  padding: 8px 14px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid #a0e7e5;
+  background-color: #e3fdfd;
+}
+
+
+
+/* MEDIA QUERY cho điện thoại */
+@media (max-width: 480px) {
+
+  .header-center {
+    flex-basis: 100%;
+    order: 2;
+    text-align: center;
+    position: static;
+    transform: none;
+    margin-top: 8px;
+  }
+
+  .header-left {
+    order: 1;
+  }
+
+  /* Lesson + Audio xuống hàng trên điện thoại */
+  .top-bar{
+    flex-direction: column;
+    align-items: stretch;
+    width: 90%;
+  }
+
+  .top-bar select{
+    width: 100%;
+  }
+
+  .top-bar audio{
+    width: 100%;
+  }
+}
+
+  header {
+    padding: 10px 15px;
+  }
+  .header-left a {
+    font-size: 18px;
+  }
+  .header-left a i {
+    font-size: 20px;
+  }
+  .header-center {
+    font-size: 22px;
+  }
+}
+
+
+
+
+  .top-select {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 40px;
+  }
+
+  select {
+    padding: 8px 14px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 2px solid #a0e7e5;
+    background-color: #e3fdfd;
+  }
+
+  /* Word list */
+  .word-list {
+    width: 85%;
+    margin: 20px auto;
+    background-color: #E0FBE2;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    font-size: 22px;
+  }
+
+.word-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px dashed #ffb3ba;
+  transition: background-color .15s ease-in-out;
+}
+.word-row:last-child { border-bottom: none; }
+
+/* Hover đổi màu */
+.word-row:hover {
+  background-color: #fffacd; /* xanh nhạt dễ thấy */
+  cursor: pointer;
+}
+
+  /* Ôn tập */
+  .review-box {
+    margin: 40px auto;
+    width: 70%;
+    background-color: #ffe5ec;
+    padding: 25px;
+    font-weight: bold;
+    color: #607274;
+    font-size: 26px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .review-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+.review-buttons button {
+  background-color: #a0e7e5;
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.review-buttons button:hover {
+  background-color: #ffb3ba;
+}
+
+
+  /* Bài tập */
+  .exercise {
+    width: 80%;
+    margin: 0 auto 30px auto;
+    font-size: 22px;
+    text-align: left;
+  }
+
+  .exercise input {
+    width: 220px;
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 6px;
+  }
+
+  .exercise button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    font-size: 18px;
+    background-color: #a0e7e5;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .exercise button:hover {
+    background-color: #ffb3ba;
+  }
+
+  .result {
+    font-weight: bold;
+    color: #C5705D;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+
+.audio-box{
+  width:80%;
+  margin:40px auto;
+  padding:25px;
+  background:#e3fdfd;
+  border-radius:12px;
+  text-align:center;
+}
+
+.audio-box h2{
+  color:#7a4e3e;
+  margin-bottom:15px;
+}
+
+.audio-box audio{
+  width:100%;
+  max-width:700px;
+}
+
+.audio-note{
+  margin-top:10px;
+  color:#666;
+  font-size:18px;
+}
+
+
+  footer {
+    font-size: 22px;
+    margin-top: 40px;
+    padding: 20px;
+    color: #7a4e3e;
+    background-color: #fff0e1;
+  }
+
+  .confetti {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: red;
+    opacity: .9;
+    animation: pop .9s ease-out forwards;
+  }
+  @keyframes pop {
+    0% { transform: translate(0,0) scale(1); opacity:1;}
+    50% {transform: translate(calc(var(--x)*.5),calc(var(--y)*.4)) scale(1.1);opacity:1;}
+    100% {transform: translate(var(--x),var(--y)) scale(.5);opacity:0;}
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left">
+    <a href="https://lopanhthayket-site.github.io/lopanhthayket.thcs-2k9.homepage/">
+      <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
+    </a>
+  </div>
+  <div class="header-center">
+    Từ vựng bài học
+  </div>
+</header>
+
+<!-- Bộ chọn -->
+<!-- Bộ chọn + Audio -->
+<div class="top-bar">
+
+  <select id="wordList">
+    <option value="1">Từ vựng bài học - 1</option>
+    <option value="2">Từ vựng bài học - 2</option>
+    <option value="3">Từ vựng bài học - 3</option>
+    <option value="4">Từ vựng bài học - 4</option>
+    <option value="5">Từ vựng bài học - 5</option>
+  </select>
+
+  <audio id="lessonAudio" controls>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+</div>
+
+
+<script>
+// Bắt sự kiện Enter cho tất cả các ô input trong bài tập
+document.addEventListener("DOMContentLoaded", function() {
+  const exerciseInputs = document.querySelectorAll(".exercise input");
+
+  exerciseInputs.forEach(input => {
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {      // Kiểm tra nếu nhấn Enter
+        e.preventDefault();          // Ngăn việc xuống dòng mặc định
+        const checkBtn = this.nextElementSibling; // giả định nút Check ngay sau input
+        if (checkBtn && checkBtn.tagName === "BUTTON") {
+          checkBtn.click();         // kích hoạt nút Check
+        }
+      }
+    });
+  });
+});
+</script>
+
+
+
+<!-- Danh sách từ vựng -->
+<div class="word-list" id="wordContainer"></div>
+
+<!-- Ôn tập -->
+<div class="review-box">
+<div id="progressCounter"
+     style="position:absolute; top:12px; right:18px;
+            font-size:18px; color:#7a4e3e;">
+  Đã biết 0 / 0
+</div>
+
+
+  <div id="vietWord">Chọn Bộ từ vựng để bắt đầu</div>
+    
+  <!-- Hiển thị đáp án -->
+<div id="answer" style="font-size:22px;color:#7a4e3e; margin-top:15px; text-align:center; min-height:40px;"></div>
+   
+  <!-- Nút bấm -->
+  <div class="review-buttons" style="margin-top:20px;">
+    <button onclick="know()">Đã biết</button>
+    <button onclick="dontKnow()">Chưa biết</button>
+    <button onclick="nextWord()">Tiếp theo</button>
+  </div>
+
+</div>
+
+<!-- Bài tập -->
+<div class="exercise" id="exercise"></div>
+
+
+
+<footer>Chúc mừng bạn đã hoàn thành bài học!</footer>
+<script>
+const selectEl = document.getElementById("wordList");
+
+function sortOptionsByNumber() {
+  const opts = Array.from(selectEl.options);
+
+  opts.sort((a, b) => {
+    return Number(a.value) - Number(b.value);
+  });
+
+  selectEl.innerHTML = "";
+  opts.forEach(o => selectEl.appendChild(o));
+}
+
+// sort ngay khi load
+sortOptionsByNumber();
+
+// sort lại khi mở dropdown
+selectEl.addEventListener("mousedown", sortOptionsByNumber);
+selectEl.addEventListener("touchstart", sortOptionsByNumber);
+</script>
+
+<script>
+/********** DATA **********/
+const data = {
+  1: [
+   ],
+
+  2: [
+  ],
+
+  3: [
+  ],
+
+  4: [
+{ en: "neighborhood (n) /ˈneɪbəhʊd/", vn: "khu dân cư, khu vực lân cận (chính tả Anh là neighbourhood)", tick: false },
+  { en: "quiet (adj) /ˈkwaɪət/", vn: "yên tĩnh, thanh bình, ắng lặng", tick: false },
+  { en: "center (n) /ˈsentə(r)/", vn: "trung tâm (chính tả Anh là centre)", tick: false },
+  { en: "play soccer (v phr)", vn: "chơi đá bóng (từ Mỹ, Anh thường dùng play football)", tick: false },
+  { en: "walk (v/n) /wɔːk/", vn: "đi bộ (v); chuyến đi dạo bộ (n)", tick: false },
+  { en: "lake (n) /leɪk/", vn: "hồ nước", tick: false },
+  { en: "community (n) /kəˈmjuːnəti/", vn: "cộng đồng, nhóm người có cùng chung lợi ích/không gian sống", tick: false },
+  { en: "library (n) /ˈlaɪbrəri/", vn: "thư viện", tick: false },
+  { en: "comic book (n phr)", vn: "truyện tranh", tick: false },
+  { en: "exam (n) /ɪɡˈzæm/", vn: "kỳ thi, bài kiểm tra (dạng viết tắt của examination)", tick: false },
+  { en: "famous (adj) /ˈfeɪməs/", vn: "nổi tiếng, được nhiều người biết đến", tick: false },
+  { en: "bakery (n) /ˈbeɪkəri/", vn: "tiệm bánh mì, cửa hàng bánh ngọt", tick: false },
+  { en: "located (adj) /ləʊˈkeɪtɪd/", vn: "nằm ở vị trí, tọa lạc tại", tick: false },
+  { en: "local (adj/n) /ˈləʊkl/", vn: "thuộc về địa phương (adj); người dân địa phương (n)", tick: false },
+  { en: "delicious (adj) /dɪˈlɪʃəs/", vn: "thơm ngon, ngon miệng", tick: false },
+  { en: "coffee shop (n phr)", vn: "quán cà phê", tick: false },
+  { en: "supermarket (n) /ˈsuːpəmɑːkɪt/", vn: "siêu thị", tick: false },
+  { en: "opposite (prep/adj/n) /ˈɒpəzɪt/", vn: "đối diện, trái ngược hoàn toàn", tick: false },
+  { en: "coastal (adj) /ˈkəʊstl/", vn: "thuộc vùng duyên hải, thuộc bờ biển", tick: false },
+  { en: "market (n) /ˈmɑːkɪt/", vn: "chợ, thị trường thương mại", tick: false },
+  { en: "outdoor (adj) /ˈaʊtdɔː(r)/", vn: "ngoài trời (đứng trước danh từ, đối lập với indoor)", tick: false },
+  { en: "farmer (n) /ˈfɑːmə(r)/", vn: "nông dân, chủ trang trại", tick: false },
+  { en: "vegetable (n) /ˈvedʒtəbl/", vn: "rau củ quả", tick: false },
+  { en: "fresh (adj) /freʃ/", vn: "tươi mới, trong lành (không khí), tươi sống (thực phẩm)", tick: false },
+  { en: "seafood (n) /ˈsiːfuːd/", vn: "hải sản, đồ biển", tick: false },
+  { en: "clinic (n) /ˈklɪnɪk/", vn: "phòng khám chuyên khoa, bệnh viện tư nhỏ", tick: false },
+  { en: "friendly (adj) /ˈfrendli/", vn: "thân thiện, hiếu khách, dễ mến", tick: false },
+  { en: "sick (adj) /sɪk/", vn: "bị ốm, bị bệnh, buồn nôn", tick: false },
+  { en: "hospital (n) /ˈhɒspɪtl/", vn: "bệnh viện", tick: false },
+{ en: "town (n) /taʊn/", vn: "thị trấn, thị xã, thành phố nhỏ", tick: false },
+  ],
+  5: [
+
+  ],
+
+
+};
+
+const lessonAudios = {
+  1: "",
+  2: "",
+  3: "",
+  4: "audio/lesson 4 Vocab.wav",
+  5: "LINK_AUDIO_BAI_5"
+};
+
+let currList = 1, listCopy=[], index=0;
+
+let totalWords = 0;
+let knownCount = 0;
+
+/********** LOAD LIST **********/
+function loadList(){
+  currList = document.getElementById("wordList").value;
+
+  const audio = document.getElementById("lessonAudio");
+
+  if (lessonAudios[currList]) {
+    audio.src = lessonAudios[currList];
+    audio.load();
+  }
+
+  listCopy = [...data[currList]];
+  totalWords = listCopy.length;
+  knownCount = 0;
+
+  updateCounter();
+  renderWords();
+  index=-1;
+  nextWord();
+  loadExercises();
+}
+
+function updateCounter(){
+  document.getElementById("progressCounter").innerText =
+    `Đã biết ${knownCount} / ${totalWords}`;
+}
+
+
+document.getElementById("wordList").onchange = loadList;
+loadList();
+
+/********** RENDER & SORT **********/
+function renderWords(){
+  const box=document.getElementById("wordContainer");
+  box.innerHTML="";
+
+  let sorted=[...data[currList]].sort((a,b)=>b.tick - a.tick);
+
+  sorted.forEach(item=>{
+    let realIndex = data[currList].indexOf(item);
+    box.innerHTML+=`
+      <div class="word-row">
+        <span>${item.en}: ${item.vn}</span>
+        <input type="checkbox" ${item.tick?"checked":""} onclick="toggleTick(${realIndex})">
+      </div>`;
+  });
+}
+
+/********** TICK UPDATE **********/
+function toggleTick(realIndex){
+  data[currList][realIndex].tick = !data[currList][realIndex].tick;
+  renderWords();
+}
+
+/********** REVIEW **********/
+function nextWord(){
+  document.getElementById("answer").innerHTML="";
+  if(listCopy.length===0){
+    document.getElementById("vietWord").innerHTML="🎉 Bạn đã học xong hết!";
+    return;
+  }
+  index=Math.floor(Math.random()*listCopy.length);
+  document.getElementById("vietWord").innerHTML=listCopy[index].vn;
+}
+
+function know(){
+  firework();
+  knownCount++;
+  listCopy.splice(index,1);
+  updateCounter();
+  nextWord();
+}
+
+function dontKnow(){
+  document.getElementById("answer").innerHTML=listCopy[index].en;
+}
+
+/********** EXERCISES **********/
+function loadExercises(){
+  const box=document.getElementById("exercise");
+  box.innerHTML="";
+  exercises[currList].forEach((item,i)=>{
+    box.innerHTML+=`
+    <div style="margin:10px 0;">
+      ${i+1}. ${item.q}
+      <input id="ex${i}">
+      <button onclick="checkEx(${i})">Check</button>
+      <span id="res${i}" class="result"></span>
+    </div>`;
+  });
+}
+
+function checkEx(i){
+  const user = document.getElementById("ex"+i).value.trim().toLowerCase();
+  const ans = exercises[currList][i].a.toLowerCase();
+  const box = document.getElementById("res"+i);
+
+  if(user === ans) {
+    box.innerHTML = "✔ Correct";
+    box.style.color = "#28a745"; // chữ Correct màu xanh lá
+    firework(); // gọi pháo hoa
+  } else {
+    box.innerHTML = "✘ " + exercises[currList][i].a;
+    box.style.color = "#D02752"; // chữ sai màu đỏ
+  }
+}
+
+/********** FIREWORK **********/
+function firework(){
+  for(let i=0;i<25;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.setProperty("--x",(Math.random()-.5)*600+"px");
+    c.style.setProperty("--y",(Math.random()-.5)*600+"px");
+    c.style.backgroundColor=`hsl(${Math.random()*360},90%,60%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),900);
+  }
+}
+</script>
+
+</body>
+</html>
