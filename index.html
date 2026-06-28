@@ -284,6 +284,17 @@ select {
     background-color: #fff0e1;
   }
 
+.speaker-icon{
+  margin-left:10px;
+  color:#4a7c59;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.speaker-icon:hover{
+  color:#ff6b6b;
+}
+
   .confetti {
     position: fixed;
     top: 50%;
@@ -694,23 +705,62 @@ function updateCounter(){
 document.getElementById("wordList").onchange = loadList;
 loadList();
 
-/********** RENDER & SORT **********/
-function renderWords(){
-  const box=document.getElementById("wordContainer");
-  box.innerHTML="";
+function speakWord(text){
 
-  let sorted=[...data[currList]].sort((a,b)=>b.tick - a.tick);
+  speechSynthesis.cancel();
 
-  sorted.forEach(item=>{
-    let realIndex = data[currList].indexOf(item);
-    box.innerHTML+=`
-      <div class="word-row">
-        <span>${item.en}: ${item.vn}</span>
-        <input type="checkbox" ${item.tick?"checked":""} onclick="toggleTick(${realIndex})">
-      </div>`;
-  });
+  let cleanText = text;
+
+  // bỏ phiên âm /.../
+  cleanText = cleanText.split("/")[0];
+
+  // bỏ loại từ (n), (v), (adj), (phr v)...
+  cleanText = cleanText.replace(/\(.*?\)/g,"").trim();
+
+  const utter = new SpeechSynthesisUtterance(cleanText);
+
+  utter.lang = "en-US";
+  utter.rate = 0.85;
+  utter.pitch = 1;
+  utter.volume = 1;
+
+  speechSynthesis.speak(utter);
 }
 
+/********** RENDER & SORT **********/
+function renderWords(){
+
+  const box = document.getElementById("wordContainer");
+  box.innerHTML = "";
+
+  let sorted = [...data[currList]].sort((a,b)=>b.tick - a.tick);
+
+  sorted.forEach(item=>{
+
+    let realIndex = data[currList].indexOf(item);
+
+    box.innerHTML += `
+      <div class="word-row">
+
+        <span>
+          ${item.en}: ${item.vn}
+
+          <i class="fa-solid fa-volume-high speaker-icon"
+             onclick="event.stopPropagation();speakWord(\`${item.en}\`)">
+          </i>
+
+        </span>
+
+        <input
+          type="checkbox"
+          ${item.tick ? "checked" : ""}
+          onclick="toggleTick(${realIndex})">
+
+      </div>
+    `;
+  });
+
+}
 /********** TICK UPDATE **********/
 function toggleTick(realIndex){
   data[currList][realIndex].tick = !data[currList][realIndex].tick;
