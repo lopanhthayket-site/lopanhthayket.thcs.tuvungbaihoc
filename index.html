@@ -320,10 +320,6 @@ select {
 <div class="top-bar">
 
   <select id="wordList">
-    <option value="1">Từ vựng bài học - 1</option>
-    <option value="2">Từ vựng bài học - 2</option>
-    <option value="3">Từ vựng bài học - 3</option>
-    <option value="4">Từ vựng bài học - 4</option>
     <option value="5">Từ vựng bài học - 5</option>
     <option value="6">Từ vựng bài học - 6</option>
     <option value="7">Từ vựng bài học - 7</option>
@@ -416,17 +412,6 @@ selectEl.addEventListener("touchstart", sortOptionsByNumber);
 <script>
 /********** DATA **********/
 const data = {
-  1: [
-   ],
-
-  2: [
-  ],
-
-  3: [
-  ],
-
-  4: [
-  ],
   5: [
 // Group 1: Irregular Plural Nouns (Danh từ số nhiều bất quy tắc)
   { en: "man -> men (n)", vn: "người đàn ông -> những người đàn ông", tick: false },
@@ -551,7 +536,7 @@ const data = {
   { en: "young (adj) /jʌŋ/", vn: "trẻ tuổi, non nớt", tick: false },
   { en: "youth (n) /juːθ/", vn: "tuổi trẻ, thanh xuân, giới trẻ (nói chung)", tick: false },
   { en: "sticky rice (n phr)", vn: "gạo nếp, xôi (món ăn làm từ gạo nếp)", tick: false },
-  { en: "artisan (n) /ˌɑːtɪˈzæn/", vn: "artisan (n) /ˌɑːtɪˈzæn/: nghệ nhân, thợ thủ công lành nghề", tick: false },
+  { en: "artisan (n) /ˌɑːtɪˈzæn/", vn: "nghệ nhân, thợ thủ công lành nghề", tick: false },
   { en: "follow (v) /ˈfɒləʊ/", vn: "làm theo, tuân theo, theo dõi", tick: false },
   { en: "series (n) /ˈsɪəriːz/", vn: "chuỗi, loạt, dãy (danh từ số ít và số nhiều có dạng như nhau)", tick: false },
   { en: "step (n/v) /step/", vn: "bước, công đoạn (n); bước đi, giẫm lên (v)", tick: false },
@@ -589,7 +574,7 @@ const data = {
   { en: "generation (n) /ˌdʒenəˈreɪʃn/", vn: "thế hệ, đời", tick: false },
   { en: "produce (v) /prəˈdjuːs/", vn: "sản xuất, chế tạo, cho ra đời", tick: false },
   { en: "production (n) /prəˈdʌkʃn/", vn: "sự sản xuất, quá trình sản xuất", tick: false },
-  { en: "beautiful (adj) /ˈbjuːtɪfl/", vn: "đẹp, xinh đẹp (viết sai chính tả trong danh sách gốc: beautìul)", tick: false },
+  { en: "beautiful (adj) /ˈbjuːtɪfl/", vn: "đẹp, xinh đẹp", tick: false },
   { en: "beauty (n) /ˈbjuːti/", vn: "vẻ đẹp, nét đẹp, mỹ nhân", tick: false },
   { en: "function (n/v) /ˈfʌŋkʃn/", vn: "chức năng, vai trò (n); hoạt động, vận hành tốt (v)", tick: false },
   { en: "functional (adj) /ˈfʌŋkʃənl/", vn: "thiết thực, thực dụng, thuộc về chức năng cấu tạo", tick: false },
@@ -602,7 +587,7 @@ const data = {
   { en: "tradition (n) /trəˈdɪʃn/", vn: "truyền thống", tick: false },
   { en: "traditional (adj) /trəˈdɪʃənl/", vn: "mang tính truyền thống, cổ truyền", tick: false },
   { en: "worldwide (adj/adv) /ˌwɜːldˈwaɪd/", vn: "khắp thế giới, mang tầm cỡ toàn cầu", tick: false },
-  { en: "symbolise (v) /ˈsɪmbəlaɪz/", vn: "tượng trưng cho, là biểu tượng của (tiếng Mỹ viết là symbolize)", tick: false },
+  { en: "symbolise (v) /ˈsɪmbəlaɪz/", vn: "tượng trưng cho, là biểu tượng của (Anh Mỹ viết là symbolize)", tick: false },
   { en: "symbol (n) /ˈsɪmbl/", vn: "biểu tượng", tick: false },
   { en: "season (n) /ˈsiːzn/", vn: "mùa (trong năm), mùa vụ trong giải đấu", tick: false },
   { en: "import (v/n) /ɪmˈpɔːt/ hoặc /ˈɪmpɔːt/", vn: "nhập khẩu (v); hàng nhập khẩu, sự nhập khẩu (n)", tick: false },
