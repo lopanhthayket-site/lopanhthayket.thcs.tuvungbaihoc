@@ -294,6 +294,24 @@ select {
 .speaker-icon:hover{
   color:#ff6b6b;
 }
+#btnVNEN,
+#btnENVN{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:8px;
+
+background:#a0e7e5;
+
+font-size:18px;
+
+cursor:pointer;
+
+margin:0 5px;
+
+}
 
   .confetti {
     position: fixed;
@@ -379,8 +397,26 @@ document.addEventListener("DOMContentLoaded", function() {
   Đã biết 0 / 0
 </div>
 
+<div style="margin:15px 0;">
 
-  <div id="vietWord">Chọn Bộ từ vựng để bắt đầu</div>
+<button id="btnVNEN"
+        onclick="setMode('vn-en')">
+
+Việt ➜ Anh
+
+</button>
+
+<button id="btnENVN"
+        onclick="setMode('en-vn')">
+
+Anh ➜ Việt
+
+</button>
+
+</div>
+
+
+  <div id="vietWord">Chọn hiển thị Việt Anh/Anh Việt để bắt đầu</div>
     
   <!-- Hiển thị đáp án -->
 <div id="answer" style="font-size:22px;color:#7a4e3e; margin-top:15px; text-align:center; min-height:40px;"></div>
@@ -669,38 +705,58 @@ const lessonAudios = {
 
 };
 
-let currList = 1, listCopy=[], index=0;
+let currList = 1,
+    listCopy = [],
+    index = 0;
 
 let totalWords = 0;
 let knownCount = 0;
 
+let reviewMode = "vn-en";
 /********** LOAD LIST **********/
 function loadList(){
+
   currList = document.getElementById("wordList").value;
 
-  const audio = document.getElementById("lessonAudio");
-
-  if (lessonAudios[currList]) {
-    audio.src = lessonAudios[currList];
-    audio.load();
-  }
-
   listCopy = [...data[currList]];
+
   totalWords = listCopy.length;
+
   knownCount = 0;
 
   updateCounter();
+
   renderWords();
-  index=-1;
-  nextWord();
+
   loadExercises();
+
+  setMode(reviewMode);
+
 }
 
 function updateCounter(){
   document.getElementById("progressCounter").innerText =
     `Đã biết ${knownCount} / ${totalWords}`;
 }
+function setMode(mode){
 
+   reviewMode = mode;
+
+   document.getElementById("btnVNEN")
+      .style.background =
+      mode==="vn-en"
+      ? "#ffb3ba"
+      : "#a0e7e5";
+
+   document.getElementById("btnENVN")
+      .style.background =
+      mode==="en-vn"
+      ? "#ffb3ba"
+      : "#a0e7e5";
+
+   nextWord();
+
+}
 
 document.getElementById("wordList").onchange = loadList;
 loadList();
@@ -775,7 +831,18 @@ function nextWord(){
     return;
   }
   index=Math.floor(Math.random()*listCopy.length);
-  document.getElementById("vietWord").innerHTML=listCopy[index].vn;
+if(reviewMode==="vn-en"){
+
+document.getElementById("vietWord").innerHTML =
+listCopy[index].vn;
+
+}
+else{
+
+document.getElementById("vietWord").innerHTML =
+listCopy[index].en;
+
+}
 }
 
 function know(){
@@ -787,7 +854,20 @@ function know(){
 }
 
 function dontKnow(){
-  document.getElementById("answer").innerHTML=listCopy[index].en;
+
+if(reviewMode==="vn-en"){
+
+document.getElementById("answer").innerHTML =
+listCopy[index].en;
+
+}
+else{
+
+document.getElementById("answer").innerHTML =
+listCopy[index].vn;
+
+}
+
 }
 
 /********** EXERCISES **********/
