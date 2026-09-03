@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Từ vựng bài học- Lớp Anh thầy Kết</title>
+<title>T? v?ng bài h?c- L?p Anh th?y K?t</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;       
   align-items: center;
-  justify-content: space-between;  /* Left luôn bên trái, center căn giữa */
+  justify-content: space-between;  /* Left luôn bên trái, center c?n gi?a */
   gap: 15px;
 }
 
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 0 0 auto;          /* không bị co lại */
+  flex: 0 0 auto;          /* không b? co l?i */
 }
 
 .header-left a {
@@ -91,7 +91,7 @@ select {
 
 
 
-/* MEDIA QUERY cho điện thoại */
+/* MEDIA QUERY cho ?i?n tho?i */
 @media (max-width: 480px) {
 
   .header-center {
@@ -107,7 +107,7 @@ select {
     order: 1;
   }
 
-  /* Lesson + Audio xuống hàng trên điện thoại */
+  /* Lesson + Audio xu?ng hàng trên ?i?n tho?i */
   .top-bar{
     flex-direction: column;
     align-items: stretch;
@@ -174,13 +174,13 @@ select {
 }
 .word-row:last-child { border-bottom: none; }
 
-/* Hover đổi màu */
+/* Hover ??i màu */
 .word-row:hover {
-  background-color: #fffacd; /* xanh nhạt dễ thấy */
+  background-color: #fffacd; /* xanh nh?t d? th?y */
   cursor: pointer;
 }
 
-  /* Ôn tập */
+  /* Ôn t?p */
   .review-box {
     margin: 40px auto;
     width: 70%;
@@ -212,7 +212,7 @@ select {
 }
 
 
-  /* Bài tập */
+  /* Bài t?p */
   .exercise {
     width: 80%;
     margin: 0 auto 30px auto;
@@ -294,24 +294,6 @@ select {
 .speaker-icon:hover{
   color:#ff6b6b;
 }
-#btnVNEN,
-#btnENVN{
-
-padding:10px 18px;
-
-border:none;
-
-border-radius:8px;
-
-background:#a0e7e5;
-
-font-size:18px;
-
-cursor:pointer;
-
-margin:0 5px;
-
-}
 
 .word-text{
     display:flex;
@@ -320,7 +302,7 @@ margin:0 5px;
 }
 
 .en-word{
-    width:420px;      /* chỉnh tăng giảm */
+    width:420px;      /* ch?nh t?ng gi?m */
     flex-shrink:0;
     font-weight:600;
 }
@@ -328,6 +310,58 @@ margin:0 5px;
 .vn-word{
     flex:1;
 }
+
+/* ===== ?N / HI?N NGH?A T? V?NG ===== */
+
+
+.word-list.hide-all-meanings .vn-word {
+    visibility: hidden !important;
+}
+
+/* T? nào ???c click ?? hi?n riêng thì hi?n lên */
+.word-list.hide-all-meanings .vn-word.show-individual {
+    visibility: visible !important;
+}
+
+.en-word {
+    cursor: pointer;
+}
+
+.en-word:hover {
+    color: #d66b5d;
+}
+
+.en-word {
+    cursor: pointer;
+}
+
+.en-word:hover {
+    color: #d66b5d;
+}
+
+.toggle-meaning-box {
+    width: 85%;
+    margin: 20px auto -5px auto;
+    text-align: left;
+}
+
+#toggleMeaningBtn {
+    background: #ffd6ba;
+    color: #7a4e3e;
+    border: 2px solid #f3b28f;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#toggleMeaningBtn:hover {
+    background: #ffb3ba;
+    transform: translateY(-1px);
+}
+
 
 @media (max-width:768px){
 
@@ -347,6 +381,7 @@ margin:0 5px;
   }
 
 }
+
   .confetti {
     position: fixed;
     top: 50%;
@@ -413,6 +448,13 @@ margin:0 5px;
 
 </div>
 
+<!-- NÚT HIỆN / ẨN NGHĨA -->
+<div class="toggle-meaning-box">
+  <button id="toggleMeaningBtn" onclick="toggleAllMeanings()">
+    🙈 Ẩn nghĩa
+  </button>
+</div>
+
 
 <script>
 // Bắt sự kiện Enter cho tất cả các ô input trong bài tập
@@ -445,7 +487,6 @@ document.addEventListener("DOMContentLoaded", function() {
             font-size:18px; color:#7a4e3e;">
   Đã biết 0 / 0
 </div>
-
 <div style="margin:15px 0;">
 
 <button id="btnVNEN"
@@ -463,7 +504,6 @@ Anh ➜ Việt
 </button>
 
 </div>
-
 
   <div id="vietWord">Chọn hiển thị Việt Anh/Anh Việt để bắt đầu</div>
     
@@ -491,9 +531,26 @@ const selectEl = document.getElementById("wordList");
 function sortOptionsByNumber() {
   const opts = Array.from(selectEl.options);
 
-  opts.sort((a, b) => {
-    return Number(a.value) - Number(b.value);
-  });
+opts.sort((a, b) => {
+
+    const getKey = v => {
+        const m = v.match(/^(\d+)([A-Z]?)$/);
+
+        return {
+            num: parseInt(m[1]),
+            letter: m[2] || ""
+        };
+    };
+
+    const x = getKey(a.value);
+    const y = getKey(b.value);
+
+    if (x.num !== y.num)
+        return x.num - y.num;
+
+    return x.letter.localeCompare(y.letter);
+
+});
 
   selectEl.innerHTML = "";
   opts.forEach(o => selectEl.appendChild(o));
@@ -1872,6 +1929,10 @@ let totalWords = 0;
 let knownCount = 0;
 
 let reviewMode = "vn-en";
+
+// Trạng thái Hiện / Ẩn nghĩa
+let meaningsVisible = true;
+
 /********** LOAD LIST **********/
 function loadList(){
 
@@ -1935,7 +1996,7 @@ function speakWord(text){
   const utter = new SpeechSynthesisUtterance(cleanText);
 
   utter.lang = "en-US";
-  utter.rate = 0.85;
+  utter.rate = 1;
   utter.pitch = 1;
   utter.volume = 1;
 
@@ -1946,7 +2007,17 @@ function speakWord(text){
 function renderWords(){
 
   const box = document.getElementById("wordContainer");
+
   box.innerHTML = "";
+
+  // Nếu đang ở chế độ ẩn nghĩa
+  // thì danh sách mới cũng phải ẩn nghĩa
+  if (!meaningsVisible) {
+      box.classList.add("hide-all-meanings");
+  } else {
+      box.classList.remove("hide-all-meanings");
+  }
+
 
   let sorted = [...data[currList]].sort((a,b)=>b.tick - a.tick);
 
@@ -1957,32 +2028,108 @@ function renderWords(){
     box.innerHTML += `
       <div class="word-row">
 
-<span class="word-text">
+        <span class="word-text">
 
-  <span class="en-word">
-    ${item.en}:
-  </span>
+          <span 
+            class="en-word"
+            onclick="toggleOneMeaning(this)"
+            title="Click để hiện / ẩn nghĩa"
+          >
+            ${item.en}:
+          </span>
 
-  <span class="vn-word">
-    ${item.vn}
-  </span>
+          <span class="vn-word">
+            ${item.vn}
+          </span>
 
-  <i class="fa-solid fa-volume-high speaker-icon"
-     onclick="event.stopPropagation();speakWord(\`${item.en}\`)">
-  </i>
+          <i class="fa-solid fa-volume-high speaker-icon"
+             onclick="event.stopPropagation();speakWord(\`${item.en}\`)">
+          </i>
 
-</span>
+        </span>
 
         <input
           type="checkbox"
           ${item.tick ? "checked" : ""}
-          onclick="toggleTick(${realIndex})">
+          onclick="event.stopPropagation(); toggleTick(${realIndex})">
 
       </div>
     `;
   });
 
 }
+
+/********** HIỆN / ẨN NGHĨA **********/
+
+// Nút Hiện / Ẩn toàn bộ nghĩa
+function toggleAllMeanings() {
+
+    const wordList = document.getElementById("wordContainer");
+    const button = document.getElementById("toggleMeaningBtn");
+    const meanings = wordList.querySelectorAll(".vn-word");
+
+    meaningsVisible = !meaningsVisible;
+
+    if (meaningsVisible) {
+
+        // HIỆN TẤT CẢ
+        wordList.classList.remove("hide-all-meanings");
+
+        meanings.forEach(word => {
+            word.classList.remove("show-individual");
+            word.style.visibility = "visible";
+        });
+
+        button.innerHTML = "🙈 Ẩn nghĩa";
+
+    } else {
+
+        // ẨN TẤT CẢ
+        wordList.classList.add("hide-all-meanings");
+
+        meanings.forEach(word => {
+            word.classList.remove("show-individual");
+            word.style.visibility = "";
+        });
+
+        button.innerHTML = "👁️ Hiện nghĩa";
+    }
+}
+
+
+// Click từng từ tiếng Anh
+function toggleOneMeaning(enWord) {
+
+    const vnWord = enWord.nextElementSibling;
+
+    if (!vnWord) return;
+
+
+    // Nếu đang ẨN TOÀN BỘ
+    // click từ nào thì hiện riêng nghĩa từ đó
+    if (!meaningsVisible) {
+
+        vnWord.classList.toggle("show-individual");
+
+    } 
+    
+    // Nếu đang HIỆN TOÀN BỘ
+    // click từ nào thì ẩn / hiện riêng từ đó
+    else {
+
+        if (vnWord.style.visibility === "hidden") {
+
+            vnWord.style.visibility = "visible";
+
+        } else {
+
+            vnWord.style.visibility = "hidden";
+
+        }
+
+    }
+}
+
 /********** TICK UPDATE **********/
 function toggleTick(realIndex){
   data[currList][realIndex].tick = !data[currList][realIndex].tick;
@@ -2035,7 +2182,6 @@ listCopy[index].vn;
 }
 
 }
-
 /********** EXERCISES **********/
 function loadExercises(){
   const box=document.getElementById("exercise");
